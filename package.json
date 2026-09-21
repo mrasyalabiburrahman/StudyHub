@@ -1,0 +1,21 @@
+{
+  "name": "studyhub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "StudyHub PWA — jadwal kuliah & deadline tugas + notifikasi Telegram",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "setup": "npm --prefix client install && npm --prefix server install",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm --prefix server run build && npm --prefix client run build",
+    "db:deploy": "npm --prefix server run db:deploy",
+    "db:seed": "npm --prefix server run db:seed",
+    "prestart": "npm --prefix server run db:deploy",
+    "start": "npm --prefix server start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

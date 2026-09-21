@@ -1,4 +1,13 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+import path from 'node:path';
+
+// Direktori server/ — valid untuk tsx (src/) maupun hasil build (dist/).
+export const serverDir = path.resolve(__dirname, '../..');
+
+// Muat .env dari cwd (mis. root project / platform hosting) lalu lengkapi
+// dari server/.env. Variabel yang sudah ada tidak ditimpa.
+dotenv.config();
+dotenv.config({ path: path.join(serverDir, '.env') });
 
 function required(key: string, fallback?: string): string {
   const v = process.env[key] ?? fallback;

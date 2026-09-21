@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:4000';
+// Dev (vite): pakai VITE_API_URL (default localhost:4000).
+// Prod (di-serve backend yang sama): same-origin agar tak perlu config tambahan.
+// Deploy frontend terpisah: isi VITE_API_URL saat build.
+const API_BASE =
+  import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? 'http://localhost:4000' : window.location.origin);
 
 export const api = axios.create({ baseURL: `${API_BASE}/api` });
 
